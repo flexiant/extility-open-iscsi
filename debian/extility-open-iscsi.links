@@ -1,0 +1,2 @@
+etc/init.d/open-iscsi etc/network/if-up.d/open-iscsi
+etc/init.d/open-iscsi etc/network/if-down.d/open-iscsi

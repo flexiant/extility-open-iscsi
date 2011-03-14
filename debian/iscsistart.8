@@ -1,0 +1,54 @@
+.TH "iscsistart" "8" "February 2008" "open-iscsi" "Debian Distribution" 
+.PP 
+.SH "NAME" 
+iscsistart \- iSCSI boot utility
+.PP 
+.SH "SYNOPSIS" 
+.PP 
+iscsistart
+.PP 
+.SH "DESCRIPTION"
+.PP
+iscsistart is used for attaching to iSCSI targets during bootup.
+.PP
+.SH "OPTIONS"
+.TP
+\fB\-i\fR, \fB\-\-initiatorname=name\fR
+set InitiatorName to name (Required)
+.TP
+\fB\-t\fR, \fB\-\-targetname=name\fR
+set TargetName to name (Required)
+.TP
+\fB\-g\fR, \fB\-\-tgpt=N\fR
+set target portal group tag to N (Required)
+.TP
+\fB\-a\fR, \fB\-\-address=A.B.C.D\fR
+set IP addres to A.B.C.D (Required)
+.TP
+\fB\-p\fR, \fB\-\-port=N\fR
+set port to N (Default 3260)
+.TP
+\fB\-u\fR, \fB\-\-username=N\fR
+set username to N (optional)
+.TP
+\fB\-w\fR, \fB\-\-password=N\fR
+set password to N (optional)
+.TP
+\fB\-U\fR, \fB\-\-username_in=N\fR
+set incoming username to N (optional)
+.TP
+\fB\-W\fR, \fB\-\-password_in=N\fR
+set incoming password to N (optional)
+.TP
+\fB\-d\fR, \fB\-\-debug debuglevel\fR
+print debugging information 
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+display this help and exit
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+display version and exit
+.PP
+.SH "AUTHOR" 
+This manpage was written by Alex Williamson <alex.williamson@hp.com>, 2008
+.PP 

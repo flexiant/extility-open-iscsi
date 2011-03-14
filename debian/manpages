@@ -1,0 +1,4 @@
+doc/iscsi_discovery.8
+doc/iscsid.8
+debian/iscsistart.8
+debian/iscsi-iname.8

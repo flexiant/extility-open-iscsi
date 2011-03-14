@@ -1,0 +1,44 @@
+Source: extility-open-iscsi
+Section: net
+Priority: optional
+Maintainer: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Philipp Hug <debian@hug.cx>
+Uploaders: Andrew Moise <chops@demiurgestudios.com>
+Build-Depends: debhelper (>= 4.0.0), bzip2, bison, flex
+Standards-Version: 3.8.0
+Homepage: http://www.open-iscsi.org/
+
+Package: extility-open-iscsi
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, extility-open-iscsi-utils
+Description: High performance, transport independent iSCSI implementation
+ iSCSI is a network protocol standard that allows the use of the SCSI protocol
+ over TCP/IP networks.  This implementation follows RFC3720.
+
+Package: extility-open-iscsi-udeb
+Architecture: any
+Section: debian-installer
+XC-Package-Type: udeb
+Depends: ${shlibs:Depends}, ${misc:Depends}, scsi-modules, libnss-files-udeb
+Description: Configure iSCSI
+ iSCSI is a network protocol standard that allows the use of the SCSI protocol
+ over TCP/IP networks.  This implementation follows RFC3720.
+ .
+ This is the minimal package (udeb) used by debian-installer
+
+Package: extility-open-iscsi-utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: extility-open-iscsi (<< 2.0.870.1-0ubuntu10)
+Description: iSCSI initiatior administrative utility
+ iSCSI is a network protocol standard that allows the use of the SCSI protocol
+ over TCP/IP networks.  This implementation follows RFC3720.  This package
+ contains the iscsiadm userspace utility.
+
+#Package: linux-iscsi-modules-source
+#Architecture: all
+#Depends: ${shlibs:Depends}, ${misc:Depends}, module-assistant, debhelper (>= 4.0.0), bzip2
+#Description: Source Code for the Linux iSCSI Kernel Modules
+# Along with make-kpkg, this package maybe used to build a linux-iscsi-modules
+# package for a kernel-image package.
+

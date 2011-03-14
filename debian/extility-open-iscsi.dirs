@@ -1,0 +1,8 @@
+bin
+sbin
+var/lib/open-iscsi
+etc/init.d
+etc
+etc/iscsi
+usr/share/initramfs-tools/hooks/
+usr/share/initramfs-tools/scripts/local-top
