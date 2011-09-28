@@ -140,7 +140,7 @@ binary-common:
 	dh_installdebconf
 	dh_installdocs
 	dh_installexamples
-	dh_installinit -- start 25 S . start 41 0 1 6 .
+	dh_installinit -- start 25 S 2 . start 41 0 1 6 .
 	dh_installinit --name=iscsi-network-interface -n --upstart-only
 	dh_installman
 	dh_link

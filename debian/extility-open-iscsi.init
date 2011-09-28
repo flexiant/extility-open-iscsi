@@ -3,7 +3,7 @@
 # Provides:          iscsi
 # Required-Start:    $local_fs
 # Required-Stop:     $remote_fs sendsigs networking
-# Default-Start:     S
+# Default-Start:     S 2
 # Default-Stop:      0 6
 # Short-Description: Starts and stops the iSCSI initiator services and logs in to default targets
 ### END INIT INFO
