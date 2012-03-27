@@ -1,2 +1,2 @@
-etc/init.d/open-iscsi etc/network/if-up.d/open-iscsi
-etc/init.d/open-iscsi etc/network/if-down.d/open-iscsi
+etc/init.d/extility-open-iscsi etc/network/if-up.d/extility-open-iscsi
+etc/init.d/extility-open-iscsi etc/network/if-down.d/extility-open-iscsi
