@@ -113,6 +113,7 @@ install-arch:
 	install -m 755 usr/iscsid $(CURDIR)/debian/extility-open-iscsi/sbin
 	install -m 755 usr/iscsistart $(CURDIR)/debian/extility-open-iscsi/sbin
 	install -m 644 etc/iscsid.conf $(CURDIR)/debian/extility-open-iscsi/etc/iscsi
+	install -m 644 -D etc/default.open-iscsi $(CURDIR)/debian/extility-open-iscsi/etc/default/open-iscsi
 
 	# udeb stuff
 	install -m 755 usr/iscsiadm $(CURDIR)/debian/extility-open-iscsi-udeb/bin

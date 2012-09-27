@@ -12,8 +12,12 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/sbin/iscsid
 ADM=/sbin/iscsiadm
 PIDFILE=/var/run/iscsid.pid
+DAEMON_ARGS=
 
 [ -x "$DAEMON" ] || exit 0
+
+# Read configuration variable file if it is present
+[ -r /etc/default/open-iscsi ] && . /etc/default/open-iscsi
 
 . /lib/lsb/init-functions
 
@@ -30,7 +34,7 @@ start() {
 	log_daemon_msg "Starting iSCSI initiator service" "iscsid"
 	modprobe -q iscsi_tcp 2>/dev/null || :
 	modprobe -q ib_iser 2>/dev/null || :
-	start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON
+	start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON -- $DAEMON_ARGS
 	RETVAL=$?
 	log_end_msg $RETVAL
 	starttargets

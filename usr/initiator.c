@@ -52,6 +52,8 @@
 
 #define PROC_DIR "/proc"
 
+int disable_scanning = 0;
+
 static void iscsi_login_timedout(void *data);
 
 /*
@@ -1140,22 +1142,23 @@ void free_initiator(void)
 static void session_scan_host(struct iscsi_session *session, int hostno,
 			      queue_task_t *qtask)
 {
-	pid_t pid = 0;
+	pid_t pid;
 
-	// We no host scaning in the start up - Gihan
-	// This hack is done so that iscsi disk will be only loaded when necessary
-	//pid = iscsi_sysfs_scan_host(hostno, 1);
+	if (disable_scanning) {
+		mgmt_ipc_write_rsp(qtask, MGMT_IPC_OK);
+		return;
+	}
+
+	pid = iscsi_sysfs_scan_host(hostno, 1);
 	if (pid == 0) {
 		mgmt_ipc_write_rsp(qtask, MGMT_IPC_OK);
 
-		// We no host scaning in the start up - Gihan
-		// This hack is done so that iscsi disk will be only loaded when necessary
-		/*if (session)
+		if (session)
 			iscsi_sysfs_for_each_device(
 					&session->nrec.session.queue_depth,
 					hostno, session->id,
 					iscsi_sysfs_set_queue_depth);
-		exit(0);*/
+		exit(0);
 	} else if (pid > 0) {
 		need_reap();
 		if (qtask) {
