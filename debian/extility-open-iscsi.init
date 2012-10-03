@@ -22,6 +22,9 @@ if [ "$IFACE" = lo ]; then
 	exit 0
 fi
 
+# Read configuration variable file if it is present
+[ -r /etc/default/open-iscsi ] && . /etc/default/open-iscsi
+
 . /lib/lsb/init-functions
 
 if [ ! -d /sys/class/ ]; then
@@ -64,7 +67,7 @@ startdaemon() {
 		sanitychecks
 		modprobe -q iscsi_tcp 2>/dev/null || :
 		modprobe -q ib_iser 2>/dev/null || :
-		start-stop-daemon --start --quiet --exec $DAEMON
+		start-stop-daemon --start --quiet --exec $DAEMON -- $DAEMON_ARGS
 		RETVAL=$?
 		log_end_msg $RETVAL
 		# Don't kill the iscsi daemon when killing all processes 
