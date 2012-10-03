@@ -39,6 +39,9 @@ run under user group ID \fIgid\fR (default is the current user group ID).
 write process ID to \fIpid\-file\fR rather than the default
 \fI/var/run/iscsid.pid\fR
 .TP
+.BI [-s|--no-scanning]
+disable scanning of hosts; this is useful if you have a large number of LUNs and scanning takes a considerable time, but means you have to mount the disks by host, bus, target and LUN number rather than anything higher level.
+.TP
 .BI [-h|--help]
 display this help and exit
 .TP
