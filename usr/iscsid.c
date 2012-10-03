@@ -341,7 +341,7 @@ int main(int argc, char *argv[])
 	sigaction(SIGPIPE, &sa_new, &sa_old );
 	sigaction(SIGTERM, &sa_new, &sa_old );
 
-	while ((ch = getopt_long(argc, argv, "c:i:fd:u:g:p:vh", long_options,
+	while ((ch = getopt_long(argc, argv, "c:i:fd:u:g:p:svh", long_options,
 				 &longindex)) >= 0) {
 		switch (ch) {
 		case 'c':
