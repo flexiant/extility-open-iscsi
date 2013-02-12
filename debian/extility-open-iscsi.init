@@ -136,8 +136,9 @@ stop() {
 	log_daemon_msg "Stopping iSCSI initiator service"
 	start-stop-daemon --stop --quiet --signal KILL --exec $DAEMON
 	rm -f $PIDFILE /lib/init/rw/sendsigs.omit.d/`basename $PIDFILE`
-	modprobe -r ib_iser 2>/dev/null
-	modprobe -r iscsi_tcp 2>/dev/null
+	# Do not do modprobes - See LP #1123192, EXTL-4128
+	# modprobe -r ib_iser 2>/dev/null
+	# modprobe -r iscsi_tcp 2>/dev/null
 	log_end_msg 0
 }
 
