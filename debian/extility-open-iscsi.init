@@ -14,6 +14,9 @@ ADM=/sbin/iscsiadm
 PIDFILE=/var/run/iscsid.pid
 NAMEFILE=/etc/iscsi/initiatorname.iscsi
 
+#On iscis restart we should signal XVPAgent to unmount and remount the storage units
+XVPAGENTPIDFILE=/var/run/extility/xvpagent/xvpagent.pid
+
 [ -x "$DAEMON" ] || exit 0
 
 # Support for ifupdown script.
@@ -119,6 +122,13 @@ start() {
 	else
 		starttargets
 	fi
+	log_daemon_msg "Signaling XVPAgent iscsi has been started"
+        XVPAGENTPID=
+	[ -f ${XVPAGENTPIDFILE} ] && XVPAGENTPID=`cat ${XVPAGENTPIDFILE}`
+        if [ "${XVPAGENTPID}" != "" ] ; then
+                /bin/kill -HUP ${XVPAGENTPID}
+        fi	
+
 }
 
 stoptargets() {
@@ -132,6 +142,13 @@ stoptargets() {
 }
 
 stop() {
+	log_daemon_msg "Signaling XVPAgent iscsi going to be stopped"
+	XVPAGENTPID=
+	[ -f ${XVPAGENTPIDFILE} ] && XVPAGENTPID=`cat ${XVPAGENTPIDFILE}`
+	if [ "${XVPAGENTPID}" != "" ] ; then
+		/bin/kill -USR2 ${XVPAGENTPID}
+		sleep 10
+	fi
 	stoptargets
 	log_daemon_msg "Stopping iSCSI initiator service"
 	start-stop-daemon --stop --quiet --signal KILL --exec $DAEMON
